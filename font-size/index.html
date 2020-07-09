@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <title> Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+<div id="wrapper">
+    <form onsubmit="return Validate()" name="form">
+        <div id="username_div">
+            <label>Username</label> <br>
+            <input type="text" class="textInput" id="username">
+            <div id="name_error"></div>
+        </div>
+
+        <div>
+            <input type="submit" value="Login" class="btn">
+        </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    var success = false;
+    var username = document.getElementById("username");
+
+    // SELECTING ALL ERROR DISPLAY ELEMENTS
+    var name_error = document.getElementById('name_error');
+
+    // SETTING ALL EVENT LISTENERS
+    username.addEventListener('blur', nameVerify, true);
+
+    // validation function
+    function Validate() {
+        // validate username
+        if (username.value == "") {
+            username.style.border = "1px solid red";
+            document.getElementById('username_div').style.color = "red";
+            name_error.textContent = "Username is required";
+            username.focus();
+            var success = false;
+        }
+        // validate username
+        if (username.value.length < 3) {
+            username.style.border = "1px solid red";
+            document.getElementById('username_div').style.color = "red";
+            name_error.textContent = "Username must be at least 3 characters";
+            username.focus();
+            success = false;
+        }
+
+
+    }
+    // event handler functions
+    function nameVerify() {
+        if (username.value != "") {
+            username.style.border = "1px solid #5e6e66";
+            document.getElementById('username_div').style.color = "#5e6e66";
+            name_error.innerHTML = "";
+            success = true;
+            localStorage.setItem("login_username", username.value)
+            window.location = "realtime_drawing.html"
+        }
+    }
+</script>
+
+</html>
