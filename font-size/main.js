@@ -3,7 +3,7 @@ rightWristX = 0;
 leftWristX = 0;
 var logout = document.getElementById("logout").Value;
 username = localStorage.getItem("login_username")
-if (username == "" || username == "null") {
+if (username == ""  ) {
     window.location = "index.html"
 }
 
@@ -41,10 +41,11 @@ function draw() {
     document.getElementById("font_size").innerHTML = "Font size of the text will be = " + difference + "px";
     textSize(difference);
     fill('#FFE787');
-    if (username == "null") {
-        window.location = "index.html"
-    } else {
+    if (username) {
         text(username, 50, 400);
+    } else {
+        
+         window.location = "index.html"
     }
 
 }
